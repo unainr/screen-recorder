@@ -1,9 +1,13 @@
-import { RootLayout } from '@/types'
+import { Header } from "@/components/layouts/header";
+import { RootLayout } from "@/types";
 
-const Layout = ({children}:RootLayout) => {
-  return (
-    <>{children}</>
-  )
-}
+const Layout = ({ children }: RootLayout) => {
+	return (
+		<>
+			<Header />
+			{children}
+		</>
+	);
+};
 
-export default Layout
+export default Layout;
