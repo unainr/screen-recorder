@@ -6,6 +6,7 @@ import { formSchema } from "@/lib/schema"
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
+import { DeleteVideo } from "./image-upload";
 
 export const CreateVideo = async (values:z.infer<typeof formSchema>) => { 
 const {userId} = await auth();
@@ -61,7 +62,7 @@ export const deleteVideo = async (id: string) => {
 
         if (!video) return { error: 'Video not found' }
         if (video.createdBy !== userId) return { error: 'Unauthorized' }
-
+if (video.videoUrl) await DeleteVideo(video.videoUrl); // 👈 delete from uploadthing
         await db
             .delete(screenRecord)
             .where(and(
@@ -75,3 +76,17 @@ export const deleteVideo = async (id: string) => {
         return { error: 'Something went wrong' }
     }
 }
+
+// TODO: get video by id
+export const getVideoID = async (shareId:string) => { 
+try {
+    const [data] = await db.select().from(screenRecord).where(eq(screenRecord.shareId,shareId))
+    if (!data ) {
+			return{error:'share id not found'}
+		}
+    return {success:true,data:data}
+} catch (error) {
+    console.log(error)
+    return {success:false,error}
+}
+ }
