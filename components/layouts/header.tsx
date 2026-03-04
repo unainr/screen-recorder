@@ -12,7 +12,7 @@ import { SignInButtonClerk } from '../clerk-sign-button/Sign-in-button'
 const menuItems = [
     { name: 'Home', href: '/' },
     { name: 'Upload', href: '/upload' },
-    { name: 'Services', href: '/services' },
+    { name: 'My Vidoes', href: '/my-videos' },
     { name: 'Projects', href: '/project' },
     { name: 'Contact', href: '/contact' },
 ]

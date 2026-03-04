@@ -4,7 +4,7 @@ import { db } from "@/drizzle/db";
 import { screenRecord } from "@/drizzle/schema";
 import { formSchema } from "@/lib/schema"
 import { auth } from "@clerk/nextjs/server";
-import { and, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { DeleteVideo } from "./image-upload";
 
@@ -36,18 +36,25 @@ return{
 
 // TODO: get video by user 
 export const getVideoByUser = async () => {
-    const {userId} = await auth();
-      if(!userId){
-        return {error:'Unauthorized'}
-      }
-    try {
-        const data  = await db.select().from(screenRecord).where(eq(screenRecord.createdBy,userId)).orderBy(screenRecord.createdAt)
-         return {success:true,data:data}
-    } catch (error) {
-        return {error:error}
-    } 
+  const { userId } = await auth();
 
- }
+  if (!userId) {
+    return { error: "Unauthorized" };
+  }
+
+  try {
+    const data = await db
+      .select()
+      .from(screenRecord)
+      .where(eq(screenRecord.createdBy, userId))
+      .orderBy(desc(screenRecord.createdAt)); // newest first
+
+    return { success: true, data };
+  } catch (error) {
+    console.error("[getVideoByUser]", error);
+    return { error: "Something went wrong" };
+  }
+};
 
 //  TODO: delete video by user
 export const deleteVideo = async (id: string) => {
@@ -86,7 +93,7 @@ try {
 		}
     return {success:true,data:data}
 } catch (error) {
-    console.log(error)
-    return {success:false,error}
+     console.error(error);
+    return { success: false, error: 'Something went wrong' };
 }
  }
