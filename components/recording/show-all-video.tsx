@@ -49,7 +49,6 @@ export const ShowAllVideo = () => {
 	const [deletingId, setDeletingId] = useState<string | null>(null);
 	const [copiedId, setCopiedId] = useState<string | null>(null);
 	const [playingId, setPlayingId] = useState<string | null>(null);
-	const [transcribingId, setTranscribingId] = useState<string | null>(null);
 
 	//TODO: fetch videos
 	const fetchVideos = async () => {

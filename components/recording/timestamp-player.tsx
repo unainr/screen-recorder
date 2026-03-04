@@ -143,7 +143,7 @@ export function TimestampPlayer({
                     <button
                         onClick={handleAdd}
                         disabled={adding}
-                        className="flex items-center gap-1.5 px-3 h-9 rounded-xl text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition-colors disabled:opacity-50 shrink-0"
+                        className="flex items-center gap-1.5 px-3 h-9 rounded-xl text-sm font-medium bg-orange-800 hover:bg-orange-600 text-white transition-colors disabled:opacity-50 shrink-0"
                     >
                         {adding ? (
                             <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -157,7 +157,7 @@ export function TimestampPlayer({
                     <button
                         onClick={handleAutoGenerate}
                         disabled={generating || duration === 0}
-                        className="flex items-center gap-1.5 px-3 h-9 rounded-xl text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white transition-colors disabled:opacity-50 shrink-0"
+                        className="flex items-center gap-1.5 px-3 h-9 rounded-xl text-sm font-medium bg-orange-500 hover:bg-orange-400 text-white transition-colors disabled:opacity-50 shrink-0"
                     >
                         {generating ? (
                             <Loader2 className="h-3.5 w-3.5 animate-spin" />
