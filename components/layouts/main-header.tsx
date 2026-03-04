@@ -39,7 +39,7 @@ const pathname = usePathname();
       <nav
         data-state={menuState && "active"}
         className={cn(
-          "fixed z-100 h-14 w-full border-b transition-colors duration-150",
+          "fixed z-50 h-14 w-full border-b transition-colors duration-150",
           scrolled && "bg-background/50 backdrop-blur-xl"
         )}
       >
