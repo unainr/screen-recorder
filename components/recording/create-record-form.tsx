@@ -57,7 +57,7 @@ export function CreateRecordForm() {
 				} else {
 					toast.success("video created! Redirecting…");
 					resetStore();
-					router.push("/");
+					router.push("/my-videos");
 					form.reset();
 				}
 			} catch {
